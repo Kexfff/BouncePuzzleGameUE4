@@ -141,6 +141,7 @@ void ABouncePuzzleGameCharacter::SetupPlayerInputComponent(class UInputComponent
 void ABouncePuzzleGameCharacter::OnFire()
 {
 	// try and fire a projectile
+	if (Bullets == 0) { return; }
 	if (ProjectileClass != nullptr)
 	{
 		UWorld* const World = GetWorld();
@@ -151,6 +152,7 @@ void ABouncePuzzleGameCharacter::OnFire()
 				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
 				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
 				World->SpawnActor<ABouncePuzzleGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+				Bullets = Bullets - 1;
 			}
 			else
 			{
@@ -164,6 +166,7 @@ void ABouncePuzzleGameCharacter::OnFire()
 
 				// spawn the projectile at the muzzle
 				World->SpawnActor<ABouncePuzzleGameProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+				Bullets = Bullets - 1;
 			}
 		}
 	}

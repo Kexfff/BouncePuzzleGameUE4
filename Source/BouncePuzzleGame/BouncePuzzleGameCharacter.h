@@ -86,6 +86,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint8 bUsingMotionControllers : 1;
 
+	UPROPERTY(BlueprintReadWrite)
+	uint8 Bullets = 1;
+
 protected:
 	
 	/** Fires a projectile. */
